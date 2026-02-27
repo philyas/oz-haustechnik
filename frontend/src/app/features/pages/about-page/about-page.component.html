@@ -1,12 +1,12 @@
 <main class="page about-page">
-  <div class="page__inner">
+  <div class="page__inner" appAnimateOnScroll>
     <h1 class="page__title">Über uns</h1>
     <p class="page__lead">
       Unser Team besteht aus erfahrenen Experten, die stets die höchsten Standards
       bei allen Heizungs- und Sanitärdienstleistungen erfüllen.
     </p>
 
-    <section class="about-page__block">
+    <section class="about-page__block" appAnimateOnScroll>
       <h2 class="about-page__subtitle">Unsere Geschichte</h2>
       <p class="about-page__text">
         Mit Leidenschaft für sicheres Heizen, klares Wasser und zuverlässige Technik
@@ -15,7 +15,7 @@
       </p>
     </section>
 
-    <section class="about-page__block">
+    <section class="about-page__block" appAnimateOnScroll>
       <h2 class="about-page__subtitle">Einsatzgebiete</h2>
       <p class="about-page__text">
         Wir sind in <strong>Michelstadt</strong> und im <strong>Odenwaldkreis</strong> für Sie da –
@@ -30,13 +30,13 @@
       </ul>
     </section>
 
-    <section class="about-page__gallery">
+    <section class="about-page__gallery" appAnimateOnScroll>
       <h2 class="about-page__gallery-title">Einblick in unsere Arbeit</h2>
       <p class="about-page__gallery-desc">
         Heizung, Sanitär, Wartung und Projekte – hier sehen Sie, was wir bei Ihnen vor Ort machen:
         von der Rohinstallation über Sanierung und Neubau bis zu Wartung und Inbetriebnahme.
       </p>
-      <ul class="about-page__gallery-grid">
+      <ul class="about-page__gallery-grid animate-stagger">
         @for (img of workImages; track img.src) {
           <li class="about-page__gallery-item" (click)="openLightbox(img)">
             <div class="about-page__gallery-image-wrap">

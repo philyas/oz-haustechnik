@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollDirective } from '@app/core/directives/animate-on-scroll.directive';
 
 export interface WorkImage {
   src: string;
@@ -12,7 +13,7 @@ export interface WorkImage {
 @Component({
   selector: 'app-about-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
 })
