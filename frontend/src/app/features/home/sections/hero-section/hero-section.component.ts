@@ -15,6 +15,7 @@ export class HeroSectionComponent implements AfterViewInit {
 
   readonly tagline = SITE.tagline;
   readonly routes = ROUTES;
+  readonly logoPath = SITE.logoPath;
   readonly heroVideoUrl = 'assets/hero-video.mp4';
 
   ngAfterViewInit(): void {
