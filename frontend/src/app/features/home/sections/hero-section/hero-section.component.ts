@@ -13,6 +13,8 @@ import { SITE, ROUTES } from '@app/core/constants/site.constants';
 export class HeroSectionComponent implements AfterViewInit {
   @ViewChild('heroVideo') heroVideoRef?: ElementRef<HTMLVideoElement>;
 
+  videoReady = false;
+
   readonly tagline = SITE.tagline;
   readonly routes = ROUTES;
   readonly logoPath = SITE.logoPath;
@@ -22,6 +24,11 @@ export class HeroSectionComponent implements AfterViewInit {
     const video = this.heroVideoRef?.nativeElement;
     if (video) {
       video.muted = true;
+      const onReady = (): void => {
+        this.videoReady = true;
+      };
+      video.addEventListener('canplay', onReady, { once: true });
+      video.addEventListener('loadeddata', onReady, { once: true });
       video.play().catch(() => {});
     }
   }

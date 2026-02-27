@@ -1,5 +1,6 @@
-<section class="hero hero--animate" aria-labelledby="hero-heading">
+<section class="hero hero--animate" [class.hero--video-ready]="videoReady" aria-labelledby="hero-heading">
   <div class="hero__bg" role="presentation">
+    <div class="hero__preview" aria-hidden="true"></div>
     <video
       #heroVideo
       class="hero__video"
