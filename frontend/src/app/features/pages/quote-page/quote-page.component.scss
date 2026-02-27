@@ -1,5 +1,39 @@
 @use 'styles/variables' as *;
 
+// Animationen: Fade-in beim Schritt- und Kachelwechsel
+@keyframes quoteStepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes quoteQuestionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes quoteOptionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .quote-page {
   padding: calc(80px + $space-lg) $space-lg $space-xl;
   background: $color-bg-alt;
@@ -78,22 +112,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
   margin-bottom: $space-lg;
 }
 
 .quote-steps__dot {
-  width: 1.75rem;
+  min-width: 1.75rem;
   height: 1.75rem;
+  padding: 0 0.35rem;
   border-radius: 50%;
   background: $color-bg;
   color: $color-text-muted;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s, color 0.2s;
+
+  transition: background 0.25s ease, color 0.25s ease;
 
   &--active {
     background: $color-primary;
@@ -106,7 +144,7 @@
   height: 2px;
   background: $color-bg;
   border-radius: 2px;
-  transition: background 0.2s;
+  transition: background 0.25s ease;
 
   @media (min-width: $bp-sm) {
     width: 3rem;
@@ -117,15 +155,40 @@
   }
 }
 
-// Step sections (Type / Contact style like hideandgrow)
+// Step sections – Fade-in beim Erscheinen
 .quote-step {
   margin-bottom: 0;
+  animation: quoteStepFadeIn 0.4s ease-out;
   @media (min-width: $bp-md) {
     flex: 1;
     display: flex;
     flex-direction: column;
     min-height: 0;
   }
+}
+
+// Schritt als Frage, zentriert und präsent
+.quote-step__header {
+  text-align: center;
+  margin-bottom: $space-xl;
+  animation: quoteQuestionFadeIn 0.35s ease-out 0.05s backwards;
+}
+
+.quote-step__question {
+  margin: 0 0 $space-sm;
+  font-family: $font-display;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: $color-text;
+}
+
+.quote-step__sub {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+  line-height: 1.4;
 }
 
 .quote-step__label {
@@ -169,52 +232,137 @@
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-// Option cards (compact)
+// Option cards – einheitlich, eckiger mit leichter Rundung, ohne linken Rand
+$quote-tile-radius: 8px;
+
 .quote-options {
   display: grid;
-  gap: $space-sm;
+  gap: $space-lg;
   grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   @media (min-width: $bp-md) {
     grid-template-columns: repeat(2, 1fr);
+    gap: $space-xl;
   }
 }
 
 .quote-option {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
+  min-height: 8rem;
+  height: 100%;
   text-align: left;
-  padding: $space-md $space-lg;
-  background: $color-bg;
-  border: 2px solid transparent;
-  border-radius: $radius-md;
+  padding: $space-lg $space-xl;
+  background: linear-gradient(145deg, #f8fafc 0%, #f0f5fa 100%);
+  border: 1px solid rgba($color-primary, 0.12);
+  border-radius: $quote-tile-radius;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease, background 0.2s ease;
+  animation: quoteOptionFadeIn 0.4s ease-out backwards;
+
+  @for $i from 0 through 11 {
+    .quote-options &:nth-child(#{$i + 1}) {
+      animation-delay: #{0.08s + $i * 0.04s};
+    }
+  }
 
   &:hover {
-    border-color: $color-primary-light;
-    background: $color-white;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    background: linear-gradient(145deg, #ffffff 0%, #f5faff 100%);
+    border-color: rgba($color-primary, 0.3);
+    box-shadow: 0 8px 24px rgba($color-primary, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba($color-primary, 0.08);
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
   }
 }
 
 .quote-option__title {
-  display: block;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: $color-text;
-  margin-bottom: 2px;
+  margin-bottom: $space-xs;
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .quote-option__desc {
-  display: block;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: $color-text-muted;
-  line-height: 1.4;
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// Option-Kacheln für Parameter (Schritt 2.1, 2.2, …)
+.quote-options--param {
+  gap: $space-lg;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-auto-rows: 1fr;
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: $space-xl;
+  }
+}
+
+.quote-option--param {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  padding: $space-lg $space-xl;
+  min-height: 8rem;
+  height: 100%;
+  background: linear-gradient(145deg, #f6fafd 0%, #eef4fa 100%);
+  border: 1px solid rgba($color-primary, 0.14);
+  border-radius: $quote-tile-radius;
+  box-shadow: 0 2px 8px rgba($color-primary, 0.07);
+
+  .quote-option__title {
+    font-size: 1rem;
+    -webkit-line-clamp: 2;
+  }
+
+  &:hover {
+    background: linear-gradient(145deg, #ffffff 0%, #f2f8ff 100%);
+  }
+
+  &.quote-option--selected {
+    border-color: $color-primary;
+    background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.04) 100%);
+    box-shadow: 0 4px 16px rgba($color-primary, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  &:hover.quote-option--selected {
+    border-color: $color-primary-dark;
+    background: linear-gradient(135deg, rgba($color-primary, 0.14) 0%, rgba($color-primary, 0.06) 100%);
+    box-shadow: 0 8px 24px rgba($color-primary, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+}
+
+.quote-option__price {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: $color-primary;
+  letter-spacing: 0.02em;
 }
 
 // Parameter form (compact)
@@ -282,9 +430,13 @@
   margin-bottom: $space-lg;
 }
 
+// Angebotsvorschlag am Ende: transparent, Preis nur hier
 .quote-summary--step3 {
-  padding: $space-sm $space-md;
+  padding: $space-md $space-lg;
   margin-bottom: 0;
+  background: transparent;
+  border-radius: $radius-md;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   @media (min-width: $bp-md) {
     margin-bottom: 0;
     align-self: start;
@@ -330,9 +482,12 @@
 }
 
 .quote-summary--step3 .quote-summary__price {
-  margin: $space-sm 0 0;
-  padding-top: $space-sm;
+  margin: $space-md 0 0;
+  padding-top: $space-md;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 1rem;
+  font-weight: 700;
+  color: $color-primary;
 }
 
 // Step 3: summary + form side-by-side, minimal spacing

@@ -12,18 +12,26 @@
         <p class="quote-page__loading">Preisliste wird geladen…</p>
       } @else {
         <div class="quote-steps__indicator" aria-hidden="true">
-          <span class="quote-steps__dot" [class.quote-steps__dot--active]="step >= 1">1</span>
-          <span class="quote-steps__line" [class.quote-steps__line--active]="step >= 2"></span>
-          <span class="quote-steps__dot" [class.quote-steps__dot--active]="step >= 2">2</span>
-          <span class="quote-steps__line" [class.quote-steps__line--active]="step >= 3"></span>
-          <span class="quote-steps__dot" [class.quote-steps__dot--active]="step >= 3">3</span>
+          @for (label of stepIndicatorLabels; track label; let i = $index) {
+            <span
+              class="quote-steps__dot"
+              [class.quote-steps__dot--active]="currentStepIndex >= i"
+            >{{ label }}</span>
+            @if (i < stepIndicatorLabels.length - 1) {
+              <span
+                class="quote-steps__line"
+                [class.quote-steps__line--active]="currentStepIndex > i"
+              ></span>
+            }
+          }
         </div>
 
         <!-- Step 1: Service auswählen -->
         @if (step === 1) {
           <section class="quote-step" aria-labelledby="step1-heading">
-            <h2 id="step1-heading" class="quote-step__label">Leistung</h2>
-            <p class="quote-step__hint">Gewünschte Leistung wählen.</p>
+            <div class="quote-step__header">
+              <h2 id="step1-heading" class="quote-step__question">Welche Leistung wünschen Sie?</h2>
+            </div>
             <div class="quote-options">
               @for (service of pricelist.services; track service.id) {
                 <button
@@ -39,62 +47,62 @@
           </section>
         }
 
-        <!-- Step 2: Parameter -->
-        @if (step === 2 && selectedService) {
-          <section class="quote-step" aria-labelledby="step2-heading">
-            <h2 id="step2-heading" class="quote-step__label">Konfiguration</h2>
-            <p class="quote-step__hint">{{ selectedService.label }} – Angaben anpassen.</p>
-            <div class="quote-params">
-              @for (param of selectedService.parameters; track param.id) {
-                <div class="quote-param">
-                  <label [for]="'param-' + param.id" class="quote-param__label">
-                    {{ param.label }}
-                    @if (param.required) {
-                      <span class="quote-param__required" aria-hidden="true">*</span>
-                    }
-                  </label>
-                  @if (isSelectParam(param)) {
-                    <select
-                      [id]="'param-' + param.id"
-                      class="quote-param__select"
-                      [value]="parameterValues[param.id]"
-                      (change)="parameterValues[param.id] = $any($event.target).value"
-                    >
-                      @for (opt of param.options; track opt.value) {
-                        <option [value]="opt.value">{{ opt.label }}</option>
-                      }
-                    </select>
-                  }
-                  @if (isRangeParam(param)) {
-                    <div class="quote-param__range-wrap">
-                      <input
-                        type="range"
-                        [id]="'param-' + param.id"
-                        class="quote-param__range"
-                        [min]="param.min"
-                        [max]="param.max"
-                        [step]="param.step"
-                        [value]="parameterValues[param.id]"
-                        (input)="parameterValues[param.id] = +$any($event.target).value"
-                      />
-                      <span class="quote-param__value">
-                        {{ parameterValues[param.id] }}{{ param.unit ? ' ' + param.unit : '' }}
-                      </span>
-                    </div>
-                  }
-                </div>
-              }
+        <!-- Step 2: Konfiguration – ein Parameter pro Unterschritt (2.1, 2.2, …), Kacheln statt Dropdowns -->
+        @if (step === 2 && selectedService && currentParam) {
+          <section class="quote-step" [attr.aria-labelledby]="'step2-' + currentParam.id + '-heading'">
+            <div class="quote-step__header">
+              <h2 [id]="'step2-' + currentParam.id + '-heading'" class="quote-step__question">
+                {{ currentParam.label }}?
+              </h2>
+              <p class="quote-step__sub">Schritt {{ '2.' + (configSubStep + 1) }} · {{ selectedService.label }}</p>
             </div>
-            @if (selectedService.note) {
+
+            @if (isSelectParam(currentParam)) {
+              <div class="quote-options quote-options--param">
+                @for (opt of currentParam.options; track opt.value) {
+                  <button
+                    type="button"
+                    class="quote-option quote-option--param"
+                    [class.quote-option--selected]="isOptionSelected(currentParam, opt.value)"
+                    (click)="selectOption(currentParam, opt.value)"
+                  >
+                    <span class="quote-option__title">{{ opt.label }}</span>
+                  </button>
+                }
+              </div>
+            }
+            @if (isRangeParam(currentParam)) {
+              <div class="quote-param">
+                <div class="quote-param__range-wrap">
+                  <input
+                    type="range"
+                    [id]="'param-' + currentParam.id"
+                    class="quote-param__range"
+                    [min]="currentParam.min"
+                    [max]="currentParam.max"
+                    [step]="currentParam.step"
+                    [value]="parameterValues[currentParam.id]"
+                    (input)="parameterValues[currentParam.id] = +$any($event.target).value"
+                  />
+                  <span class="quote-param__value">
+                    {{ parameterValues[currentParam.id] }}{{ currentParam.unit ? ' ' + currentParam.unit : '' }}
+                  </span>
+                </div>
+              </div>
+            }
+
+            @if (selectedService.note && configSubStep === selectedService.parameters.length - 1) {
               <p class="quote-step__note">{{ selectedService.note }}</p>
             }
             <div class="quote-step__actions">
-              <button type="button" class="quote-btn quote-btn--outline" (click)="backToService()">
+              <button type="button" class="quote-btn quote-btn--outline" (click)="prevParam()">
                 Zurück
               </button>
-              <button type="button" class="quote-btn" (click)="goToSummary()">
-                Weiter zur Übersicht
-              </button>
+              @if (isRangeParam(currentParam)) {
+                <button type="button" class="quote-btn" (click)="nextParam()">
+                  {{ configSubStep < selectedService.parameters.length - 1 ? 'Weiter' : 'Weiter zur Übersicht' }}
+                </button>
+              }
             </div>
           </section>
         }
@@ -102,8 +110,10 @@
         <!-- Step 3: Zusammenfassung + Kontaktformular -->
         @if (step === 3 && selectedService) {
           <section class="quote-step quote-step--form" aria-labelledby="step3-heading">
-            <h2 id="step3-heading" class="quote-step__label">Kontakt & Absenden</h2>
-            <p class="quote-step__hint quote-step__hint--sm">Kontaktdaten eintragen, Anfrage senden.</p>
+            <div class="quote-step__header">
+              <h2 id="step3-heading" class="quote-step__question">Kontakt & Absenden</h2>
+              <p class="quote-step__sub">Kontaktdaten eintragen, Anfrage senden.</p>
+            </div>
 
             <div class="quote-step__form-layout">
               <div class="quote-summary quote-summary--step3">

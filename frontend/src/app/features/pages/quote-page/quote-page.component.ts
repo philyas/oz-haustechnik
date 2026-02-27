@@ -25,6 +25,8 @@ export class QuotePageComponent implements OnInit {
 
   pricelist: Pricelist | null = null;
   step = 1;
+  /** Bei Schritt 2: Index des aktuellen Parameters (0 = 2.1, 1 = 2.2, …) */
+  configSubStep = 0;
   selectedService: PricelistService | null = null;
   parameterValues: ParameterValues = {};
   estimatedPrice = 0;
@@ -49,14 +51,76 @@ export class QuotePageComponent implements OnInit {
   selectService(service: PricelistService): void {
     this.selectedService = service;
     this.parameterValues = {};
+    this.configSubStep = 0;
     for (const p of service.parameters) {
       if (p.type === 'range' && 'default' in p) {
         this.parameterValues[p.id] = p.default;
-      } else if (p.type === 'select' && p.options.length) {
-        this.parameterValues[p.id] = p.options[0].value;
       }
+      // Select-Parameter: keine Vorauswahl – Nutzer wählt bewusst per Kachel
     }
-    this.step = 2;
+    if (service.parameters.length === 0) {
+      this.recalcPrice();
+      this.step = 3;
+    } else {
+      this.step = 2;
+    }
+  }
+
+  /** Aktueller Parameter im Konfigurationsschritt (Schritt 2) */
+  get currentParam(): PricelistParameter | null {
+    if (!this.selectedService || this.step !== 2) return null;
+    const params = this.selectedService.parameters;
+    return params[this.configSubStep] ?? null;
+  }
+
+  /** Alle Schritte für die Anzeige: 1, 2.1, 2.2, …, 3 */
+  get stepIndicatorLabels(): string[] {
+    const labels: string[] = ['1'];
+    if (this.selectedService) {
+      const n = this.selectedService.parameters.length;
+      for (let i = 0; i < n; i++) labels.push(`2.${i + 1}`);
+    }
+    labels.push('3');
+    return labels;
+  }
+
+  /** Index des aktuellen Schritts für die Anzeige (0-basiert) */
+  get currentStepIndex(): number {
+    if (this.step === 1) return 0;
+    if (this.step === 2) return 1 + this.configSubStep;
+    return this.stepIndicatorLabels.length - 1;
+  }
+
+  /** Option für Select-Parameter per Klick wählen und direkt zum nächsten Schritt */
+  selectOption(param: PricelistParameterSelect, optionValue: string): void {
+    this.parameterValues[param.id] = optionValue;
+    this.nextParam();
+  }
+
+  /** Zum nächsten Konfigurations-Unterschritt oder zur Übersicht */
+  nextParam(): void {
+    if (!this.selectedService) return;
+    const params = this.selectedService.parameters;
+    if (this.configSubStep < params.length - 1) {
+      this.configSubStep++;
+    } else {
+      this.recalcPrice();
+      this.step = 3;
+    }
+  }
+
+  /** Zum vorherigen Konfigurations-Unterschritt oder zurück zur Leistungsauswahl */
+  prevParam(): void {
+    if (this.configSubStep > 0) {
+      this.configSubStep--;
+    } else {
+      this.backToService();
+    }
+  }
+
+  /** Ist für den aktuellen Select-Parameter diese Option ausgewählt? */
+  isOptionSelected(param: PricelistParameterSelect, optionValue: string): boolean {
+    return this.parameterValues[param.id] === optionValue;
   }
 
   backToService(): void {
@@ -99,6 +163,9 @@ export class QuotePageComponent implements OnInit {
 
   backToParams(): void {
     this.step = 2;
+    if (this.selectedService) {
+      this.configSubStep = Math.max(0, this.selectedService.parameters.length - 1);
+    }
   }
 
   getSummaryLines(): string[] {
