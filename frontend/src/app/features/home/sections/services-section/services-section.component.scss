@@ -55,9 +55,10 @@
   border-radius: $radius-lg;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.25s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
   &:hover {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -157,8 +158,10 @@
   background: $color-primary;
   border-radius: $radius-md;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   &:hover {
     background: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($color-primary, 0.35);
   }
 }

@@ -1,0 +1,73 @@
+// ========== Scroll-Animationen (mit appAnimateOnScroll) ==========
+// Initial: unsichtbar, leicht nach unten versetzt
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+// Wenn im Viewport: Animation abspielen
+.animate-on-scroll.animate-in-visible {
+  animation: homeFadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes homeFadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Gestaffelte Verzögerung für Kinder (z. B. Service-Cards)
+.animate-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-on-scroll.animate-in-visible .animate-stagger > * {
+  animation: homeFadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.animate-on-scroll.animate-in-visible .animate-stagger > *:nth-child(8) { animation-delay: 0.4s; }
+
+// ========== Hero Initial-Animation (beim Laden) ==========
+.hero--animate .hero__content {
+  opacity: 0;
+  transform: translateY(32px);
+  animation: heroFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.hero--animate .hero__title {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.hero--animate .hero__tagline {
+  opacity: 0;
+  animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.hero--animate .hero__intro {
+  opacity: 0;
+  animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+.hero--animate .hero__actions {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

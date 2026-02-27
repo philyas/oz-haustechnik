@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollDirective } from '@app/core/directives/animate-on-scroll.directive';
 
 export interface PartnerItem {
   id: string;
@@ -10,7 +11,7 @@ export interface PartnerItem {
 @Component({
   selector: 'app-partners-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './partners-section.component.html',
   styleUrl: './partners-section.component.scss',
 })

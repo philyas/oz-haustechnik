@@ -1,10 +1,10 @@
-<section class="services" aria-labelledby="services-heading">
+<section class="services" appAnimateOnScroll aria-labelledby="services-heading">
   <div class="services__inner">
     <header class="services__header">
       <h2 id="services-heading" class="services__title">{{ sectionTitle }}</h2>
       <p class="services__subtitle">{{ sectionSubtitle }}</p>
     </header>
-    <ul class="services__grid">
+    <ul class="services__grid animate-stagger">
       @for (service of services; track service.id) {
         <li class="service-card">
           <div class="service-card__image-wrap">

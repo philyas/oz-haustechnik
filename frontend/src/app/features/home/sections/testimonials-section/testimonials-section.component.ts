@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollDirective } from '@app/core/directives/animate-on-scroll.directive';
 
 export interface TestimonialItem {
   id: string;
@@ -11,7 +12,7 @@ export interface TestimonialItem {
 @Component({
   selector: 'app-testimonials-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './testimonials-section.component.html',
   styleUrl: './testimonials-section.component.scss',
 })

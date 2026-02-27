@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ServiceItem } from '@app/core/models/service.model';
 import { ROUTES } from '@app/core/constants/site.constants';
+import { AnimateOnScrollDirective } from '@app/core/directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-services-section',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, AnimateOnScrollDirective],
   templateUrl: './services-section.component.html',
   styleUrl: './services-section.component.scss',
 })

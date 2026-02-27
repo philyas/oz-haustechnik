@@ -36,6 +36,11 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
   object-fit: cover;
   aspect-ratio: 3 / 2;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.14);
+  }
 }
 
 .about__content {

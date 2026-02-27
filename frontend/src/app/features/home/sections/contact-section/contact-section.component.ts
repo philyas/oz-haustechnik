@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { SITE, ROUTES } from '@app/core/constants/site.constants';
+import { AnimateOnScrollDirective } from '@app/core/directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-contact-section',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, AnimateOnScrollDirective],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',
 })
