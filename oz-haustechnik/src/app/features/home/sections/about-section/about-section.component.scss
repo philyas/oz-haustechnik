@@ -1,0 +1,105 @@
+@use '../../../../../styles/variables' as *;
+
+.about {
+  padding: $space-3xl 0;
+  background: $color-white;
+}
+
+.about__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+}
+
+.about__grid {
+  display: grid;
+  gap: $space-2xl;
+  align-items: center;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-3xl;
+  }
+}
+
+.about__media {
+  order: 0;
+  @media (min-width: $bp-lg) {
+    order: 0;
+  }
+}
+
+.about__img {
+  width: 100%;
+  height: auto;
+  border-radius: $radius-lg;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+
+.about__content {
+  order: 1;
+}
+
+.about__title {
+  margin: 0 0 $space-lg;
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.02em;
+}
+
+.about__lead {
+  margin: 0 0 $space-lg;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: $color-text-muted;
+}
+
+.about__list {
+  list-style: none;
+  margin: 0 0 $space-xl;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.about__item {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: $color-text;
+  padding-left: $space-lg;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    background: $color-primary;
+    border-radius: 50%;
+  }
+  strong {
+    color: $color-text;
+  }
+}
+
+.about__link {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-md $space-xl;
+  font-weight: 600;
+  color: $color-primary;
+  text-decoration: none;
+  border: 2px solid $color-primary;
+  border-radius: $radius-md;
+  transition: background 0.2s, color 0.2s;
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+  }
+}

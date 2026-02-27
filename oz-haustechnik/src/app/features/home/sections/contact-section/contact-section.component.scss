@@ -1,0 +1,129 @@
+@use '../../../../../styles/variables' as *;
+
+.contact {
+  padding: $space-3xl 0;
+  background: $color-bg-alt;
+}
+
+.contact__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+}
+
+.contact__header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact__title {
+  margin: 0 0 $space-md;
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.02em;
+}
+
+.contact__subtitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: $color-text-muted;
+}
+
+.contact__grid {
+  display: grid;
+  gap: $space-xl;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.contact__card {
+  background: $color-white;
+  padding: $space-xl;
+  border-radius: $radius-lg;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.contact__card-title {
+  margin: 0 0 $space-lg;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.contact__address {
+  margin: 0 0 $space-sm;
+  font-size: 1rem;
+  color: $color-text-muted;
+}
+
+.contact__link {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $color-primary;
+  text-decoration: none;
+  margin-bottom: $space-xs;
+  transition: color 0.2s, text-decoration 0.2s;
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+.contact__hours,
+.contact__emergency {
+  margin: $space-md 0 0;
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+  line-height: 1.5;
+}
+
+.contact__emergency {
+  color: $color-primary;
+  font-weight: 600;
+}
+
+.contact__cta {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  @media (min-width: $bp-md) {
+    padding-top: $space-lg;
+  }
+}
+
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-md $space-xl;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: $radius-md;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: 2px solid transparent;
+  background: $color-primary;
+  color: $color-white;
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.contact__btn--outline {
+  background: transparent;
+  color: $color-primary;
+  border-color: $color-primary;
+  &:hover {
+    background: rgba($color-primary, 0.08);
+  }
+}

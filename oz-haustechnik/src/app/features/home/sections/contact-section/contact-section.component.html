@@ -1,0 +1,31 @@
+<section class="contact" aria-labelledby="contact-heading">
+  <div class="contact__inner">
+    <header class="contact__header">
+      <h2 id="contact-heading" class="contact__title">Kontaktieren Sie uns</h2>
+      <p class="contact__subtitle">
+        Fragen oder Wunsch nach einem Angebot? Rufen Sie uns an oder schreiben Sie eine
+        E-Mail – wir melden uns zeitnah.
+      </p>
+    </header>
+    <div class="contact__grid">
+      <div class="contact__card">
+        <h3 class="contact__card-title">Kontaktdaten</h3>
+        <p class="contact__address">{{ site.address }}</p>
+        <a [href]="'tel:' + site.phone" class="contact__link contact__link--phone">
+          {{ site.phone }}
+        </a>
+        <a [href]="'mailto:' + site.email" class="contact__link contact__link--email">
+          {{ site.email }}
+        </a>
+        <p class="contact__hours">{{ site.hours }}</p>
+        <p class="contact__emergency">{{ site.emergency }}</p>
+      </div>
+      <div class="contact__cta">
+        <a [routerLink]="routes.contact" class="contact__btn">Kontaktformular</a>
+        <a [href]="'mailto:' + site.email" class="contact__btn contact__btn--outline">
+          E-Mail schreiben
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
