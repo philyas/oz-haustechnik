@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { SITE_BASE_URL } from './core/constants/site.constants';
+import { PreloadService } from './core/services/preload.service';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { PreloadComponent } from './layout/preload/preload.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, PreloadComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+  readonly preload = inject(PreloadService);
+
   constructor(
     private router: Router,
     private title: Title,

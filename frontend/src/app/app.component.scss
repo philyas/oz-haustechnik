@@ -2,6 +2,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+.app.app--visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .app__main {

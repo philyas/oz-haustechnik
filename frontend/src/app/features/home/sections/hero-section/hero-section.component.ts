@@ -1,7 +1,8 @@
-import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SITE, ROUTES } from '@app/core/constants/site.constants';
+import { PreloadService } from '@app/core/services/preload.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -12,6 +13,7 @@ import { SITE, ROUTES } from '@app/core/constants/site.constants';
 })
 export class HeroSectionComponent implements AfterViewInit {
   @ViewChild('heroVideo') heroVideoRef?: ElementRef<HTMLVideoElement>;
+  private preload = inject(PreloadService);
 
   videoReady = false;
 
@@ -26,6 +28,7 @@ export class HeroSectionComponent implements AfterViewInit {
       video.muted = true;
       const onReady = (): void => {
         this.videoReady = true;
+        this.preload.setVideoReady();
       };
       video.addEventListener('canplay', onReady, { once: true });
       video.addEventListener('loadeddata', onReady, { once: true });

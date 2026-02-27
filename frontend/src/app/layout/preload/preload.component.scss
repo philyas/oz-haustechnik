@@ -1,0 +1,81 @@
+@use 'styles/variables' as *;
+
+// Dunkelblaue Verläufe passend zum Logo (O, Tagline)
+$preload-deep: hsl(208, 100%, 12%);
+$preload-mid: hsl(208, 95%, 18%);
+$preload-accent: hsl(210, 100%, 28%);
+
+.preload {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 50% 20%,
+      $preload-accent 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      $preload-deep 0%,
+      $preload-mid 35%,
+      $preload-deep 100%
+    );
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.preload--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preload--hidden .preload__logo,
+.preload--hidden .preload__tagline {
+  opacity: 0;
+}
+
+.preload__inner {
+  text-align: center;
+  color: $color-white;
+}
+
+.preload__logo {
+  display: block;
+  max-width: min(320px, 85vw);
+  height: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+  margin: 0 auto $space-lg;
+  opacity: 0;
+  animation: preload-fade-in 0.6s ease-out 0.15s forwards;
+  transition: opacity 0.35s ease-out;
+}
+
+@keyframes preload-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.preload__tagline {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 500;
+  color: $color-white;
+  opacity: 0;
+  animation: preload-fade-in-92 0.6s ease-out 0.35s forwards;
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.02em;
+  transition: opacity 0.35s ease-out;
+}
+
+@keyframes preload-fade-in-92 {
+  to {
+    opacity: 0.92;
+  }
+}
