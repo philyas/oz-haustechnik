@@ -1,14 +1,57 @@
-<main class="page">
+<main class="page about-page">
   <div class="page__inner">
     <h1 class="page__title">Über uns</h1>
     <p class="page__lead">
       Unser Team besteht aus erfahrenen Experten, die stets die höchsten Standards
       bei allen Heizungs- und Sanitärdienstleistungen erfüllen.
     </p>
-    <p>
-      Wir bieten einen personalisierten Ansatz und nehmen uns die Zeit, Ihre
-      spezifischen Bedürfnisse zu verstehen. Erfahrene Techniker, persönlicher
-      Ansatz und Kundenorientierung – dafür steht OZ Haustechnik.
-    </p>
+
+    <section class="about-page__block">
+      <h2 class="about-page__subtitle">Unsere Geschichte</h2>
+      <p class="about-page__text">
+        Mit Leidenschaft für sicheres Heizen, klares Wasser und zuverlässige Technik
+        stehen wir in Michelstadt und Umgebung an Ihrer Seite. Ob Neubau, Sanierung
+        oder Notfall – wir liefern Handwerk auf Augenhöhe, transparent und termingerecht.
+      </p>
+    </section>
+
+    <section class="about-page__block">
+      <h2 class="about-page__subtitle">Einsatzgebiete</h2>
+      <p class="about-page__text">
+        Wir sind in <strong>Michelstadt</strong> und im <strong>Odenwaldkreis</strong> für Sie da –
+        unter anderem in Erbach, Bad König, Beerfelden, Höchst, Mossautal und der weiteren
+        Umgebung. Ob Einfamilienhaus, Mehrfamilienhaus oder gewerbliches Objekt: Neubau,
+        Sanierung, Heizungstausch oder Notfall – wir kommen zu Ihnen.
+      </p>
+      <ul class="about-page__list about-page__list--compact">
+        <li class="about-page__item"><strong>Region:</strong> Michelstadt, Erbach, Bad König, Beerfelden, Höchst, Mossautal, Odenwaldkreis</li>
+        <li class="about-page__item"><strong>Objektarten:</strong> Wohngebäude, Mehrfamilienhäuser, Gewerbe</li>
+        <li class="about-page__item"><strong>Einsätze:</strong> Neubau, Sanierung, Heizungsmodernisierung, Wartung, Notdienst</li>
+      </ul>
+    </section>
+
+    <section class="about-page__gallery">
+      <h2 class="about-page__gallery-title">Einblick in unsere Arbeit</h2>
+      <p class="about-page__gallery-desc">
+        Heizung, Sanitär, Wartung und Projekte – hier sehen Sie uns im Einsatz.
+      </p>
+      <ul class="about-page__gallery-grid">
+        @for (img of workImages; track img.src) {
+          <li class="about-page__gallery-item">
+            <img
+              [src]="img.src"
+              [alt]="img.alt"
+              class="about-page__gallery-img"
+              width="400"
+              height="300"
+              loading="lazy"
+            />
+            @if (img.caption) {
+              <span class="about-page__gallery-caption">{{ img.caption }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </section>
   </div>
 </main>

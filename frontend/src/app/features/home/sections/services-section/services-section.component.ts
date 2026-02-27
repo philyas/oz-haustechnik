@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ServiceItem } from '@app/core/models/service.model';
+import { ROUTES } from '@app/core/constants/site.constants';
 
 @Component({
   selector: 'app-services-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './services-section.component.html',
   styleUrl: './services-section.component.scss',
 })
 export class ServicesSectionComponent {
+  readonly routes = ROUTES;
   readonly sectionTitle = 'Unsere Leistungen';
   readonly sectionSubtitle =
     'Von der Reparatur bis zur Modernisierung – wir sorgen für Ihre Heizungs- und Sanitäranlagen.';

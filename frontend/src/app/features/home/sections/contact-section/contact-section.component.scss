@@ -209,20 +209,6 @@
   margin-top: $space-md;
 }
 
-.contact__form-angebot-link {
-  align-self: flex-start;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: $color-primary;
-  text-decoration: none;
-  padding: $space-sm 0;
-  border-bottom: 1px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-  &:hover {
-    color: $color-primary-dark;
-    border-bottom-color: $color-primary-dark;
-  }
-}
 
 .contact__btn {
   display: inline-flex;

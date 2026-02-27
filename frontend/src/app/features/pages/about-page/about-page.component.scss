@@ -18,8 +18,125 @@
 }
 
 .page__lead {
-  margin: 0 0 $space-lg;
+  margin: 0 0 $space-xl;
   font-size: 1.125rem;
   line-height: 1.6;
   color: $color-text-muted;
+}
+
+.about-page__block {
+  margin-bottom: $space-2xl;
+}
+
+.about-page__subtitle {
+  margin: 0 0 $space-md;
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.about-page__text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+}
+
+.about-page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.about-page__item {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $color-text;
+  padding-left: $space-lg;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    background: $color-primary;
+    border-radius: 50%;
+  }
+  strong {
+    color: $color-text;
+  }
+}
+
+.about-page__list--compact {
+  gap: $space-sm;
+  margin-top: $space-md;
+}
+
+.about-page__gallery {
+  margin-top: $space-3xl;
+  padding-top: $space-3xl;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.about-page__gallery-title {
+  margin: 0 0 $space-sm;
+  font-family: $font-display;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.02em;
+}
+
+.about-page__gallery-desc {
+  margin: 0 0 $space-xl;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.about-page__gallery-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: $space-lg;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+  }
+}
+
+.about-page__gallery-item {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: $color-bg;
+}
+
+.about-page__gallery-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.about-page__gallery-caption {
+  display: block;
+  padding: $space-sm $space-md;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-text-muted;
+  background: $color-white;
+  text-align: center;
 }
