@@ -100,9 +100,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-width: 12rem;
-  max-width: 14rem;
+  width: 15.5rem;
+  min-width: 15.5rem;
   padding: $space-md $space-xl;
   font-size: 1rem;
   font-weight: 600;
@@ -111,11 +110,9 @@
   cursor: pointer;
   border: 2px solid transparent;
   overflow: hidden;
+  white-space: nowrap;
   box-sizing: border-box;
   @media (min-width: $bp-md) {
-    width: 14rem;
-    min-width: 14rem;
-    max-width: 14rem;
     padding: $space-md $space-2xl;
   }
   &::before {
