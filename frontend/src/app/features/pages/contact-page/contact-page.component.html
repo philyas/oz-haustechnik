@@ -1,0 +1,21 @@
+<main class="page">
+  <div class="page__inner">
+    <h1 class="page__title">Kontakt</h1>
+    <p class="page__lead">
+      Haben Sie Fragen oder möchten Sie ein Angebot? Wir freuen uns auf Ihre
+      Nachricht.
+    </p>
+    <div class="contact-info">
+      <p><strong>OZ Haustechnik</strong><br />{{ site.address }}</p>
+      <p>
+        <a [href]="'tel:' + site.phone">{{ site.phone }}</a><br />
+        <a [href]="'mailto:' + site.email">{{ site.email }}</a>
+      </p>
+      <p>{{ site.hours }}</p>
+    </div>
+    <p class="contact-note">
+      Sie können uns auch direkt per E-Mail schreiben oder anrufen. Für
+      Notfallreparaturen sind wir 24/7 erreichbar.
+    </p>
+  </div>
+</main>

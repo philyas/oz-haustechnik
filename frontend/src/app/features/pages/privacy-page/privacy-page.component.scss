@@ -1,0 +1,25 @@
+@use 'styles/variables' as *;
+
+.page {
+  padding: calc(80px + $space-2xl) $space-lg $space-3xl;
+}
+
+.page__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.page__title {
+  margin: 0 0 $space-md;
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: $color-text;
+}
+
+.page__lead {
+  margin: 0 0 $space-lg;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: $color-text-muted;
+}

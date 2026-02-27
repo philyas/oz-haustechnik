@@ -1,0 +1,23 @@
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="testimonials__inner">
+    <header class="testimonials__header">
+      <h2 id="testimonials-heading" class="testimonials__title">
+        {{ sectionTitle }}
+      </h2>
+      <p class="testimonials__subtitle">{{ sectionSubtitle }}</p>
+    </header>
+    <ul class="testimonials__grid">
+      @for (item of testimonials; track item.id) {
+        <li class="testimonial-card">
+          <blockquote class="testimonial-card__quote">
+            <p class="testimonial-card__text">„{{ item.quote }}“</p>
+            <footer class="testimonial-card__author">
+              <cite class="testimonial-card__name">{{ item.author }}</cite>
+              <span class="testimonial-card__role">{{ item.role }}</span>
+            </footer>
+          </blockquote>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

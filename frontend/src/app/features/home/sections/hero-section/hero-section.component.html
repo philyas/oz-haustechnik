@@ -1,0 +1,31 @@
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__bg" role="presentation">
+    <video
+      #heroVideo
+      class="hero__video"
+      [src]="heroVideoUrl"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+    <span class="hero__overlay"></span>
+  </div>
+  <div class="hero__content">
+    <h1 id="hero-heading" class="hero__title">OZ Haustechnik</h1>
+    <p class="hero__tagline">{{ tagline }}</p>
+    <p class="hero__intro">
+      Ob Reparaturen, Wartung oder die Installation neuer Systeme – wir sind für Sie da.
+    </p>
+    <div class="hero__actions">
+      <a [routerLink]="routes.angebot" class="hero__btn hero__btn--primary">
+        <span class="hero__btn-text">Angebot anfordern</span>
+      </a>
+      <a href="/#kontakt" class="hero__btn hero__btn--secondary">
+        <span class="hero__btn-text">Zum Kontaktformular</span>
+      </a>
+    </div>
+  </div>
+</section>

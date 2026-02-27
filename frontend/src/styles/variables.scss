@@ -1,0 +1,52 @@
+// Styleguide – Farben aus dem OZ Haustechnik Logo
+// O (Blauverlauf), HAUSTECHNIK (Dunkelgrau), Icons (Solar/Grün/Wellen), Tagline (Blau)
+
+// Primär – Blau (O, Wellen, Tagline)
+$color-primary: hsl(200, 100%, 50%);
+$color-primary-dark: hsl(208, 100%, 30%);
+$color-primary-light: hsl(200, 100%, 65%);
+$color-primary-tagline: hsl(210, 100%, 35%);
+
+// Sekundär – Grün (Haus, Blatt, Nachhaltigkeit)
+$color-secondary: hsl(120, 50%, 45%);
+$color-secondary-light: hsl(100, 50%, 60%);
+
+// Akzent – Gelb/Orange (Sonne, Solar)
+$color-accent: hsl(39, 100%, 60%);
+$color-accent-dark: hsl(38, 100%, 50%);
+
+// Text – Charcoal wie im Logo (Z, HAUSTECHNIK)
+$color-text: #333333;
+$color-text-muted: #5a5a5a;
+
+// Hintergründe
+$color-bg: #fafafa;
+$color-bg-alt: #f0f4f8;
+$color-footer-bg: hsl(208, 100%, 18%);
+$color-footer-text: #cbd5e1;
+$color-white: #ffffff;
+
+// Spacing
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-2xl: 3rem;
+$space-3xl: 4rem;
+
+// Layout
+$container-max: 72rem;
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+// Breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Typography – klar, modern sans (wie im Logo)
+$font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-display: 'Outfit', $font-sans;
