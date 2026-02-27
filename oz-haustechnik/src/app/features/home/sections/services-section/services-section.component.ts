@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServiceItem } from '../../../../core/models/service.model';
+import { ServiceItem } from '@app/core/models/service.model';
 
 @Component({
   selector: 'app-services-section',

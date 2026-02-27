@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ROUTES } from '../../../../core/constants/site.constants';
+import { ROUTES } from '@app/core/constants/site.constants';
 
 @Component({
   selector: 'app-about-section',

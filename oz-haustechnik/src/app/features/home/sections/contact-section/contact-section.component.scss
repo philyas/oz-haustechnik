@@ -1,4 +1,4 @@
-@use '../../../../../styles/variables' as *;
+@use 'styles/variables' as *;
 
 .contact {
   padding: $space-3xl 0;
@@ -92,13 +92,88 @@
   font-weight: 600;
 }
 
-.contact__cta {
+.contact__form-wrap {
   display: flex;
   flex-direction: column;
-  gap: $space-md;
+  gap: $space-xl;
   @media (min-width: $bp-md) {
-    padding-top: $space-lg;
+    padding-top: 0;
   }
+}
+
+.contact__form {
+  background: $color-white;
+  padding: $space-xl;
+  border-radius: $radius-lg;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.contact__form-grid {
+  display: grid;
+  gap: $space-lg;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  margin-bottom: $space-lg;
+}
+
+.contact__form-field {
+  margin-bottom: $space-lg;
+}
+
+.contact__form-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color-text-muted;
+  margin-bottom: $space-sm;
+}
+
+.contact__form-input,
+.contact__form-textarea {
+  width: 100%;
+  padding: $space-md $space-lg;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: $radius-md;
+  background: $color-white;
+  color: $color-text;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder {
+    color: $color-text-muted;
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+  }
+}
+
+.contact__form-textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.contact__form-error {
+  display: block;
+  margin-top: $space-xs;
+  font-size: 0.875rem;
+  color: #c53030;
+}
+
+.contact__form-actions {
+  margin-top: $space-md;
+}
+
+.contact__form-angebot {
+  align-self: flex-start;
 }
 
 .contact__btn {
@@ -114,8 +189,14 @@
   border: 2px solid transparent;
   background: $color-primary;
   color: $color-white;
-  &:hover {
+  cursor: pointer;
+  font-family: inherit;
+  &:hover:not(:disabled) {
     background: $color-primary-dark;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 

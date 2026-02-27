@@ -21,6 +21,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'angebot',
+    loadComponent: () =>
+      import('./features/pages/quote-page/quote-page.component').then(
+        (m) => m.QuotePageComponent
+      ),
+  },
+  {
     path: 'impressum',
     loadComponent: () =>
       import('./features/pages/imprint-page/imprint-page.component').then(

@@ -1,0 +1,145 @@
+{
+  "currency": "EUR",
+  "validFrom": "2025",
+  "services": [
+    {
+      "id": "reparatur",
+      "label": "Reparaturen & Notfall",
+      "description": "Schnelle Behebung von Störungen an Heizung und Sanitär.",
+      "basePrice": 89,
+      "parameters": [
+        {
+          "id": "bereich",
+          "label": "Bereich",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "heizung", "label": "Heizung", "priceModifier": 0 },
+            { "value": "sanitaer", "label": "Sanitär", "priceModifier": 0 },
+            { "value": "kombi", "label": "Heizung + Sanitär", "priceModifier": 45 }
+          ]
+        },
+        {
+          "id": "prioritaet",
+          "label": "Priorität",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "normal", "label": "Normale Terminvereinbarung", "priceModifier": 0 },
+            { "value": "express", "label": "Express (innerhalb 24h)", "priceModifier": 65 },
+            { "value": "notfall", "label": "24/7 Notfall", "priceModifier": 120 }
+          ]
+        }
+      ],
+      "note": "Anfahrtskosten können je nach Entfernung anfallen."
+    },
+    {
+      "id": "wartung",
+      "label": "Wartung",
+      "description": "Regelmäßige Wartung für einwandfreie Funktion Ihrer Anlagen.",
+      "basePrice": 129,
+      "parameters": [
+        {
+          "id": "anlagentyp",
+          "label": "Anlagentyp",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "heizung", "label": "Heizungsanlage", "priceModifier": 0 },
+            { "value": "sanitaer", "label": "Sanitär / Wasser", "priceModifier": 25 },
+            { "value": "kombi", "label": "Heizung + Sanitär", "priceModifier": 55 }
+          ]
+        },
+        {
+          "id": "wohnflaeche",
+          "label": "Wohnfläche (ca.)",
+          "type": "range",
+          "unit": "m²",
+          "required": true,
+          "min": 50,
+          "max": 400,
+          "step": 25,
+          "default": 120,
+          "pricePerUnit": 0.85
+        }
+      ]
+    },
+    {
+      "id": "modernisierung",
+      "label": "Modernisierung",
+      "description": "Installation und Modernisierung von Heizungs- und Sanitäranlagen.",
+      "basePrice": 0,
+      "parameters": [
+        {
+          "id": "vorhaben",
+          "label": "Vorhaben",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "waermepumpe", "label": "Wärmepumpe", "priceModifier": 8500 },
+            { "value": "gas", "label": "Gasheizung", "priceModifier": 6200 },
+            { "value": "oel", "label": "Ölheizung", "priceModifier": 5800 },
+            { "value": "solar", "label": "Solar / Photovoltaik (Anlage)", "priceModifier": 4200 },
+            { "value": "bad", "label": "Badsanierung", "priceModifier": 3500 },
+            { "value": "wasser", "label": "Warmwasserbereiter", "priceModifier": 1800 }
+          ]
+        },
+        {
+          "id": "wohnflaeche",
+          "label": "Wohnfläche (ca.)",
+          "type": "range",
+          "unit": "m²",
+          "required": false,
+          "min": 50,
+          "max": 500,
+          "step": 25,
+          "default": 120,
+          "pricePerUnit": 12
+        },
+        {
+          "id": "badezimmer",
+          "label": "Anzahl Badezimmer / Nasszellen",
+          "type": "select",
+          "required": false,
+          "options": [
+            { "value": "1", "label": "1", "priceModifier": 0 },
+            { "value": "2", "label": "2", "priceModifier": 380 },
+            { "value": "3", "label": "3 oder mehr", "priceModifier": 720 }
+          ]
+        }
+      ],
+      "note": "Richtwerte inkl. Material; exakte Kosten nach Vor-Ort-Beratung."
+    },
+    {
+      "id": "beratung",
+      "label": "Energieeffizienz & Beratung",
+      "description": "Umfassende Beratung zu Einsparpotenzial und Fördermitteln.",
+      "basePrice": 149,
+      "parameters": [
+        {
+          "id": "umfang",
+          "label": "Beratungsumfang",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "check", "label": "Energie-Check (ca. 1h)", "priceModifier": 0 },
+            { "value": "konzept", "label": "Konzept inkl. Maßnahmenplan", "priceModifier": 180 },
+            { "value": "foerderung", "label": "Förderberatung & Antrag", "priceModifier": 220 }
+          ]
+        },
+        {
+          "id": "wohnflaeche",
+          "label": "Wohnfläche (ca.)",
+          "type": "range",
+          "unit": "m²",
+          "required": false,
+          "min": 50,
+          "max": 400,
+          "step": 25,
+          "default": 120,
+          "pricePerUnit": 0.5
+        }
+      ]
+    }
+  ]
+}

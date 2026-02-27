@@ -18,6 +18,7 @@ export const ROUTES = {
   home: '',
   about: 'ueber-uns',
   contact: 'kontakt',
+  angebot: 'angebot',
   imprint: 'impressum',
   privacy: 'datenschutz',
 } as const;

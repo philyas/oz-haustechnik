@@ -3,8 +3,8 @@
     <header class="contact__header">
       <h2 id="contact-heading" class="contact__title">Kontaktieren Sie uns</h2>
       <p class="contact__subtitle">
-        Fragen oder Wunsch nach einem Angebot? Rufen Sie uns an oder schreiben Sie eine
-        E-Mail – wir melden uns zeitnah.
+        Fragen oder Wunsch nach einem Angebot? Rufen Sie uns an oder nutzen Sie das
+        Kontaktformular – wir melden uns zeitnah.
       </p>
     </header>
     <div class="contact__grid">
@@ -20,10 +20,67 @@
         <p class="contact__hours">{{ site.hours }}</p>
         <p class="contact__emergency">{{ site.emergency }}</p>
       </div>
-      <div class="contact__cta">
-        <a [routerLink]="routes.contact" class="contact__btn">Kontaktformular</a>
-        <a [href]="'mailto:' + site.email" class="contact__btn contact__btn--outline">
-          E-Mail schreiben
+      <div class="contact__form-wrap">
+        <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="submitContact()">
+          <div class="contact__form-grid">
+            <div class="contact__form-field">
+              <label for="home-contact-name" class="contact__form-label">Name *</label>
+              <input
+                id="home-contact-name"
+                type="text"
+                class="contact__form-input"
+                formControlName="name"
+                placeholder="Ihr Name"
+                autocomplete="name"
+              />
+              @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                <span class="contact__form-error">Bitte Namen angeben.</span>
+              }
+            </div>
+            <div class="contact__form-field">
+              <label for="home-contact-email" class="contact__form-label">E-Mail *</label>
+              <input
+                id="home-contact-email"
+                type="email"
+                class="contact__form-input"
+                formControlName="email"
+                placeholder="ihre@email.de"
+                autocomplete="email"
+              />
+              @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <span class="contact__form-error">Bitte gültige E-Mail angeben.</span>
+              }
+            </div>
+          </div>
+          <div class="contact__form-field">
+            <label for="home-contact-phone" class="contact__form-label">Telefon</label>
+            <input
+              id="home-contact-phone"
+              type="tel"
+              class="contact__form-input"
+              formControlName="phone"
+              placeholder="Optional"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="contact__form-field">
+            <label for="home-contact-message" class="contact__form-label">Nachricht</label>
+            <textarea
+              id="home-contact-message"
+              class="contact__form-textarea"
+              formControlName="message"
+              placeholder="Ihre Nachricht …"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="contact__form-actions">
+            <button type="submit" class="contact__btn" [disabled]="contactForm.invalid">
+              Nachricht senden
+            </button>
+          </div>
+        </form>
+        <a [routerLink]="routes.angebot" class="contact__btn contact__btn--outline contact__form-angebot">
+          Angebot konfigurieren
         </a>
       </div>
     </div>

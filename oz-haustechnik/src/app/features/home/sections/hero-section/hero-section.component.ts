@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SITE } from '../../../../core/constants/site.constants';
+import { SITE } from '@app/core/constants/site.constants';
 
 @Component({
   selector: 'app-hero-section',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { SITE, ROUTES } from '../../core/constants/site.constants';
+import { SITE, ROUTES } from '@app/core/constants/site.constants';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +16,7 @@ export class HeaderComponent {
   readonly navLinks = [
     { path: ROUTES.home, label: 'Start' },
     { path: ROUTES.about, label: 'Über uns' },
+    { path: ROUTES.angebot, label: 'Angebot' },
     { path: ROUTES.contact, label: 'Kontakt' },
   ] as const;
 
