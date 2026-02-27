@@ -161,3 +161,27 @@
     transform: scaleX(1);
   }
 }
+
+.header__link--cta {
+  font-weight: 600;
+  color: $color-primary;
+  @media (min-width: $bp-md) {
+    padding: $space-xs $space-md;
+    margin: 0 (-$space-xs);
+    background: rgba($color-primary, 0.08);
+    border-radius: $radius-md;
+    &::after {
+      display: none;
+    }
+    &:hover {
+      background: rgba($color-primary, 0.14);
+      color: $color-primary-dark;
+    }
+  }
+}
+
+.header__link--cta.header__link--active {
+  @media (min-width: $bp-md) {
+    background: rgba($color-primary, 0.12);
+  }
+}

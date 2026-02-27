@@ -13,6 +13,7 @@ import { SITE, ROUTES } from '@app/core/constants/site.constants';
 export class HeaderComponent {
   readonly siteName = SITE.name;
   readonly logoPath = SITE.logoPath;
+  readonly routes = ROUTES;
   readonly navLinks = [
     { path: ROUTES.home, label: 'Start' },
     { path: ROUTES.about, label: 'Über uns' },

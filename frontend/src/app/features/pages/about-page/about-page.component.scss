@@ -121,6 +121,18 @@
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   background: $color-bg;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  }
+  &:hover .about-page__gallery-info {
+    opacity: 1;
+  }
+}
+
+.about-page__gallery-image-wrap {
+  position: relative;
 }
 
 .about-page__gallery-img {
@@ -131,6 +143,36 @@
   display: block;
 }
 
+.about-page__gallery-info {
+  position: absolute;
+  bottom: $space-sm;
+  right: $space-sm;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  padding: $space-xs $space-sm;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $color-white;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: $radius-md;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.about-page__gallery-info-icon {
+  font-size: 0.875em;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
 .about-page__gallery-caption {
   display: block;
   padding: $space-sm $space-md;
@@ -139,4 +181,71 @@
   color: $color-text-muted;
   background: $color-white;
   text-align: center;
+}
+
+// Lightbox Vollbild
+.about-page__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-xl;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+
+.about-page__lightbox-close {
+  position: absolute;
+  top: $space-lg;
+  right: $space-lg;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.15);
+  color: $color-white;
+  cursor: pointer;
+  transition: background 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.about-page__lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 6rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: default;
+}
+
+.about-page__lightbox-text {
+  max-width: 36rem;
+  margin-top: $space-lg;
+  padding: 0 $space-md;
+  text-align: center;
+}
+
+.about-page__lightbox-caption {
+  margin: 0 0 $space-sm;
+  padding: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $color-white;
+}
+
+.about-page__lightbox-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
 }

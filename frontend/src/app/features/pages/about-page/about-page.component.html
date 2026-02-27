@@ -33,19 +33,26 @@
     <section class="about-page__gallery">
       <h2 class="about-page__gallery-title">Einblick in unsere Arbeit</h2>
       <p class="about-page__gallery-desc">
-        Heizung, Sanitär, Wartung und Projekte – hier sehen Sie uns im Einsatz.
+        Heizung, Sanitär, Wartung und Projekte – hier sehen Sie, was wir bei Ihnen vor Ort machen:
+        von der Rohinstallation über Sanierung und Neubau bis zu Wartung und Inbetriebnahme.
       </p>
       <ul class="about-page__gallery-grid">
         @for (img of workImages; track img.src) {
-          <li class="about-page__gallery-item">
-            <img
-              [src]="img.src"
-              [alt]="img.alt"
-              class="about-page__gallery-img"
-              width="400"
-              height="300"
-              loading="lazy"
-            />
+          <li class="about-page__gallery-item" (click)="openLightbox(img)">
+            <div class="about-page__gallery-image-wrap">
+              <img
+                [src]="img.src"
+                [alt]="img.alt"
+                class="about-page__gallery-img"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+              <span class="about-page__gallery-info" aria-hidden="true">
+                <span class="about-page__gallery-info-icon" aria-hidden="true">ℹ</span>
+                Klick für Details
+              </span>
+            </div>
             @if (img.caption) {
               <span class="about-page__gallery-caption">{{ img.caption }}</span>
             }
@@ -54,4 +61,39 @@
       </ul>
     </section>
   </div>
+
+  @if (lightboxImage) {
+    <div
+      class="about-page__lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Bild vergrößert"
+      (click)="closeLightbox()"
+    >
+      <button
+        type="button"
+        class="about-page__lightbox-close"
+        aria-label="Vollbild schließen"
+        (click)="closeLightbox(); $event.stopPropagation()"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <img
+        [src]="lightboxImage.src"
+        [alt]="lightboxImage.alt"
+        class="about-page__lightbox-img"
+        (click)="$event.stopPropagation()"
+      />
+      <div class="about-page__lightbox-text">
+        @if (lightboxImage.caption) {
+          <p class="about-page__lightbox-caption">{{ lightboxImage.caption }}</p>
+        }
+        @if (lightboxImage.description) {
+          <p class="about-page__lightbox-desc">{{ lightboxImage.description }}</p>
+        }
+      </div>
+    </div>
+  }
 </main>
