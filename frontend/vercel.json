@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/oz-haustechnik/browser",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
