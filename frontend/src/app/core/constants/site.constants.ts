@@ -1,8 +1,12 @@
 /**
  * Site-wide constants for OZ Haustechnik
  */
+/** Production URL – für Canonical, Open Graph, Sitemap (ohne trailing slash) */
+export const SITE_BASE_URL = 'https://www.oz-haustechnik.de';
+
 export const SITE = {
   name: 'OZ Haustechnik',
+  baseUrl: SITE_BASE_URL,
   tagline: 'Ihr Partner für kompetente und zuverlässige Heizungs- und Sanitärarbeiten',
   /** Logo-Tagline: Sanitär • Heizung • Kundendienst • Photovoltaik • Regenerative */
   servicesTagline: 'Sanitär • Heizung • Kundendienst • Photovoltaik • Regenerative',

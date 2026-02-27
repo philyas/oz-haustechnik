@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap (Domain ggf. anpassen)
+Sitemap: https://www.oz-haustechnik.de/sitemap.xml
