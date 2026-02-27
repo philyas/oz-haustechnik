@@ -32,19 +32,23 @@
   margin: 0;
 }
 
-// Steps container (title + lead inside)
+// Steps container (title + lead inside) – scrollbar wenn nötig, v. a. mobil/tablet
 .quote-steps {
   background: $color-white;
   border-radius: $radius-lg;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   padding: $space-lg;
+  max-height: calc(100vh - 80px - #{$space-lg} * 2);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   @media (min-width: $bp-md) {
     padding: $space-xl;
+    max-height: none;
     flex: 1;
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow: auto;
+    overflow-y: auto;
   }
 }
 
