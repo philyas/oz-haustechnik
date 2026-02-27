@@ -54,7 +54,7 @@
 }
 
 .hero__title {
-  margin: 0 auto $space-md;
+  margin: 0 auto $space-2xl;
   line-height: 0;
   display: flex;
   justify-content: center;
@@ -62,10 +62,10 @@
 
 .hero__logo {
   display: block;
-  max-width: min(480px, 88vw);
+  max-width: min(560px, 90vw);
   width: auto;
   height: auto;
-  max-height: 7rem;
+  max-height: 8.5rem;
   object-fit: contain;
   margin: 0 auto;
   filter: brightness(0) invert(1) drop-shadow(0 2px 12px rgba(0, 0, 0, 0.25));
