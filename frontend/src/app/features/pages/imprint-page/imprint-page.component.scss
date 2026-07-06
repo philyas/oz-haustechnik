@@ -10,22 +10,44 @@
 }
 
 .page__title {
-  margin: 0 0 $space-lg;
+  margin: 0 0 $space-xl;
   font-family: $font-display;
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 700;
   color: $color-text;
 }
 
-.page__note {
-  margin-top: $space-xl;
-  font-size: 0.9375rem;
-  color: $color-text-muted;
+.imprint-page__block {
+  margin-bottom: $space-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.page__inner a {
+.imprint-page__subtitle {
+  margin: 0 0 $space-sm;
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.imprint-page__text {
+  margin: 0 0 $space-md;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.imprint-page__text a {
   color: $color-primary;
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }
