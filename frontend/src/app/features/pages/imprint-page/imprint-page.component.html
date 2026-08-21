@@ -1,104 +1,105 @@
-<main class="page">
+<main class="page imprint-page">
   <div class="page__inner">
     <h1 class="page__title">Impressum</h1>
-    <p class="page__lead">Angaben gemäß § 5 DDG</p>
 
-    <section class="page__section">
-      <p>
-        {{ site.owner }}<br />
-        {{ site.legalName }}<br />
-        {{ site.legalForm }}<br />
-        {{ site.street }}<br />
-        {{ site.city }}<br />
-        {{ site.country }}
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Angaben gemäß § 5 DDG</h2>
+      <p class="imprint-page__text">
+        Ömer Özcicek<br />
+        OZ-Haustechnik<br />
+        Einzelunternehmen<br />
+        Im Krähennest 3<br />
+        64720 Michelstadt<br />
+        Deutschland
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Kontakt</h2>
-      <p>
-        Telefon: <a [href]="'tel:' + site.phone">{{ site.phone }}</a><br />
-        E-Mail: <a [href]="'mailto:' + site.email">{{ site.email }}</a><br />
-        Website: <a [href]="site.baseUrl" rel="noopener">OZ-Haustechnik.de</a>
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Kontakt</h2>
+      <p class="imprint-page__text">
+        Telefon:
+        <a [href]="'tel:' + site.phone">{{ site.phone }}</a><br />
+        E-Mail:
+        <a [href]="'mailto:' + site.email">{{ site.email }}</a><br />
+        Website:
+        <a [href]="site.baseUrl" target="_blank" rel="noopener noreferrer">OZ-Haustechnik.de</a>
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Umsatzsteuer-ID</h2>
-      <p>
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Umsatzsteuer-ID</h2>
+      <p class="imprint-page__text">
         Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-        {{ site.vatId }}
+        DE332144095
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Zuständige Handwerkskammer</h2>
-      <p>
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Zuständige Handwerkskammer</h2>
+      <p class="imprint-page__text">
         Handwerkskammer Frankfurt-Rhein-Main<br />
         Bockenheimer Landstraße 21<br />
         60325 Frankfurt am Main
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Berufsrechtliche Angaben</h2>
-      <p>
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Berufsrechtliche Angaben</h2>
+      <p class="imprint-page__text">
         Berufsbezeichnung: Heizungsbauer und Installateur<br />
         Staat, in dem die Berufsbezeichnung verliehen wurde: Deutschland
       </p>
-      <p>
+      <p class="imprint-page__text">
         Berufsrechtliche Regelungen: Handwerksordnung<br />
         Die berufsrechtlichen Regelungen sind über das Portal
-        <a
-          href="https://www.gesetze-im-internet.de/hwo/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >„Gesetze im Internet“</a>
+        <a href="https://www.gesetze-im-internet.de" target="_blank" rel="noopener noreferrer"
+          >„Gesetze im Internet“</a
+        >
         abrufbar.
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Registereintrag / Handwerksrolle</h2>
-      <p>
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Registereintrag / Handwerksrolle</h2>
+      <p class="imprint-page__text">
         Eingetragen in der Handwerksrolle bei der Handwerkskammer Frankfurt-Rhein-Main.
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Verbraucherstreitbeilegung</h2>
-      <p>
-        Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor
-        einer Verbraucherschlichtungsstelle teilzunehmen.
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Verbraucherstreitbeilegung</h2>
+      <p class="imprint-page__text">
+        Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Haftung für Inhalte</h2>
-      <p>
-        Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den
-        allgemeinen Gesetzen verantwortlich. Wir übernehmen jedoch keine Gewähr für
-        die Aktualität, Vollständigkeit und Richtigkeit der bereitgestellten Inhalte.
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Haftung für Inhalte</h2>
+      <p class="imprint-page__text">
+        Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen
+        Gesetzen verantwortlich. Wir übernehmen jedoch keine Gewähr für die Aktualität,
+        Vollständigkeit und Richtigkeit der bereitgestellten Inhalte.
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Haftung für Links</h2>
-      <p>
-        Unsere Website kann Links zu externen Websites Dritter enthalten, auf deren
-        Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir
-        keine Gewähr. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
-        Anbieter oder Betreiber verantwortlich.
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Haftung für Links</h2>
+      <p class="imprint-page__text">
+        Unsere Website kann Links zu externen Websites Dritter enthalten, auf deren Inhalte wir
+        keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr. Für die
+        Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber
+        verantwortlich.
       </p>
     </section>
 
-    <section class="page__section">
-      <h2 class="page__heading">Urheberrecht</h2>
-      <p>
-        Die durch uns erstellten Inhalte und Werke auf dieser Website unterliegen dem
-        deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung oder
-        sonstige Verwertung außerhalb der Grenzen des Urheberrechts bedarf der
-        vorherigen schriftlichen Zustimmung des jeweiligen Rechteinhabers.
+    <section class="imprint-page__block">
+      <h2 class="imprint-page__subtitle">Urheberrecht</h2>
+      <p class="imprint-page__text">
+        Die durch uns erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen
+        Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Verwertung
+        außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung
+        des jeweiligen Rechteinhabers.
       </p>
     </section>
   </div>

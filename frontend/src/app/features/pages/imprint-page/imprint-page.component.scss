@@ -10,26 +10,22 @@
 }
 
 .page__title {
-  margin: 0 0 $space-md;
+  margin: 0 0 $space-xl;
   font-family: $font-display;
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 700;
   color: $color-text;
 }
 
-.page__lead {
-  margin: 0 0 $space-xl;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: $color-text-muted;
+.imprint-page__block {
+  margin-bottom: $space-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.page__section {
-  margin: 0 0 $space-xl;
-  max-width: 42rem;
-}
-
-.page__heading {
+.imprint-page__subtitle {
   margin: 0 0 $space-sm;
   font-family: $font-display;
   font-size: 1.125rem;
@@ -37,14 +33,21 @@
   color: $color-text;
 }
 
-.page__section p {
-  margin: 0 0 $space-sm;
-  line-height: 1.6;
+.imprint-page__text {
+  margin: 0 0 $space-md;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.page__inner a {
+.imprint-page__text a {
   color: $color-primary;
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }
