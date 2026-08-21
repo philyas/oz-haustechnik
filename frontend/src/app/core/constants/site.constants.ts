@@ -23,6 +23,11 @@ export const SITE = {
   email: 'info@oz-haustechnik.de',
   hours: 'Mo – Sa: 08:00 - 22:00 Uhr',
   emergency: '24/7 Notfallreparaturen',
+  lat: 49.6723359,
+  lng: 9.0107472,
+  googlePlaceId: 'ChIJ679SM4yht0kRxmjFrtSAGMI',
+  googleMapsUrl:
+    'https://www.google.com/maps/place/?q=place_id:ChIJ679SM4yht0kRxmjFrtSAGMI',
 } as const;
 
 export const ROUTES = {

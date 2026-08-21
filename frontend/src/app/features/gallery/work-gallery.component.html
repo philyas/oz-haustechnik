@@ -1,0 +1,187 @@
+<section
+  class="gallery"
+  [class.gallery--page]="variant === 'page'"
+  [class.gallery--section]="variant === 'section'"
+  appAnimateOnScroll
+  aria-labelledby="gallery-heading"
+  id="galerie"
+>
+  <div class="gallery__inner">
+    <header class="gallery__header">
+      <p class="gallery__kicker">Google-Profil</p>
+      <h2 id="gallery-heading" class="gallery__title">{{ title }}</h2>
+      <p class="gallery__desc">{{ description }}</p>
+    </header>
+
+    <ul class="gallery__track">
+      @for (img of previewImages; track img.id; let i = $index) {
+        <li class="gallery__item">
+          <button
+            type="button"
+            class="gallery__card"
+            (click)="onPreviewClick(i)"
+          >
+            <img
+              [src]="img.src"
+              [alt]="img.alt"
+              class="gallery__img"
+              width="800"
+              height="600"
+              [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+              decoding="async"
+              [attr.referrerpolicy]="img.kind === 'streetview' ? null : 'no-referrer'"
+            />
+            <span class="gallery__shade" aria-hidden="true"></span>
+            @if (hasMore && i === previewLimit - 1) {
+              <span class="gallery__more" aria-hidden="true">
+                <span class="gallery__more-plus">+</span>
+                <span class="gallery__more-label">{{ hiddenCount }} weitere</span>
+              </span>
+            } @else {
+              <span class="gallery__meta">
+                <span class="gallery__caption">{{ img.caption }}</span>
+              </span>
+            }
+          </button>
+        </li>
+      }
+    </ul>
+
+    <div class="gallery__actions">
+      @if (hasMore) {
+        <button type="button" class="gallery__more-btn" (click)="openAlbum()">
+          <span class="gallery__more-btn-plus" aria-hidden="true">+</span>
+          Alle {{ images.length }} Fotos
+        </button>
+      }
+      <a
+        class="gallery__maps"
+        [href]="mapsUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Google Maps – weitere Fotos
+      </a>
+    </div>
+  </div>
+</section>
+
+@if (albumOpen) {
+  <div
+    class="gallery-album"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Alle Fotos"
+    (click)="closeAlbum()"
+  >
+    <div class="gallery-album__panel" (click)="$event.stopPropagation()">
+      <header class="gallery-album__head">
+        <h3 class="gallery-album__title">Alle Fotos</h3>
+        <p class="gallery-album__count">{{ images.length }} Bilder</p>
+        <button
+          type="button"
+          class="gallery-album__close"
+          aria-label="Übersicht schließen"
+          (click)="closeAlbum()"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </header>
+      <ul class="gallery-album__grid">
+        @for (img of images; track img.id; let i = $index) {
+          <li>
+            <button type="button" class="gallery-album__card" (click)="open(i)">
+              <img
+                [src]="img.src"
+                [alt]="img.alt"
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+                [attr.referrerpolicy]="img.kind === 'streetview' ? null : 'no-referrer'"
+              />
+              <span>{{ img.caption }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+}
+
+@if (current) {
+  <div
+    class="gallery-lb"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Foto vergrößert"
+    (click)="closeLightbox()"
+  >
+    <button
+      type="button"
+      class="gallery-lb__close"
+      aria-label="Foto schließen"
+      (click)="closeLightbox(); $event.stopPropagation()"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="gallery-lb__arrow gallery-lb__arrow--prev"
+      aria-label="Vorheriges Foto"
+      (click)="prev(); $event.stopPropagation()"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path d="M15 18 9 12l6-6"/>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="gallery-lb__arrow gallery-lb__arrow--next"
+      aria-label="Nächstes Foto"
+      (click)="next(); $event.stopPropagation()"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path d="m9 18 6-6-6-6"/>
+      </svg>
+    </button>
+
+    <div
+      class="gallery-lb__stage"
+      (click)="$event.stopPropagation()"
+      (touchstart)="onLightboxTouchStart($event)"
+      (touchend)="onLightboxTouchEnd($event)"
+    >
+      <p class="gallery-lb__count">{{ lightboxCounter }}</p>
+
+      @if (current.kind === 'streetview' && streetViewUrl) {
+        <iframe
+          class="gallery-lb__frame"
+          [src]="streetViewUrl"
+          title="Street View: OZ Haustechnik Michelstadt"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      } @else {
+        <img
+          [src]="current.fullSrc"
+          [alt]="current.alt"
+          class="gallery-lb__img"
+          referrerpolicy="no-referrer"
+        />
+      }
+
+      <div class="gallery-lb__text">
+        <p class="gallery-lb__caption">{{ current.caption }}</p>
+        <p class="gallery-lb__desc">{{ current.description }}</p>
+      </div>
+    </div>
+  </div>
+}

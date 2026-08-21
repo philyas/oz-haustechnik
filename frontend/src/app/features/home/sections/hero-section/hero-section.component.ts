@@ -20,7 +20,7 @@ export class HeroSectionComponent implements AfterViewInit {
   readonly tagline = SITE.tagline;
   readonly routes = ROUTES;
   readonly logoPath = SITE.logoPath;
-  readonly heroVideoUrl = 'assets/hero-video.mp4';
+  readonly heroVideoUrl = 'assets/oz-video.mp4';
 
   ngAfterViewInit(): void {
     const video = this.heroVideoRef?.nativeElement;

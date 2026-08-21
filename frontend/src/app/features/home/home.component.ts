@@ -5,6 +5,7 @@ import { AboutSectionComponent } from './sections/about-section/about-section.co
 import { PartnersSectionComponent } from './sections/partners-section/partners-section.component';
 import { TestimonialsSectionComponent } from './sections/testimonials-section/testimonials-section.component';
 import { ContactSectionComponent } from './sections/contact-section/contact-section.component';
+import { WorkGalleryComponent } from '@app/features/gallery/work-gallery.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { ContactSectionComponent } from './sections/contact-section/contact-sect
     HeroSectionComponent,
     ServicesSectionComponent,
     AboutSectionComponent,
+    WorkGalleryComponent,
     PartnersSectionComponent,
     TestimonialsSectionComponent,
     ContactSectionComponent,
