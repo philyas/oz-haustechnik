@@ -20,6 +20,7 @@ export class PreloadComponent implements OnInit {
   hidden = false;
   readonly logoPath = SITE.logoPath;
   readonly tagline = SITE.tagline;
+  readonly servicesTagline = SITE.servicesTagline;
 
   ngOnInit(): void {
     const start = Date.now();

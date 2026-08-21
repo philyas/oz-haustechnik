@@ -1,9 +1,10 @@
 @use 'styles/variables' as *;
 
-// Dunkelblaue Verläufe passend zum Logo (O, Tagline)
-$preload-deep: hsl(208, 100%, 12%);
-$preload-mid: hsl(208, 95%, 18%);
-$preload-accent: hsl(210, 100%, 28%);
+$preload-deep: hsl(208, 100%, 8%);
+$preload-mid: hsl(208, 92%, 14%);
+$preload-accent: hsl(198, 100%, 46%);
+$preload-glow: hsl(210, 100%, 32%);
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 .preload {
   position: fixed;
@@ -12,19 +13,11 @@ $preload-accent: hsl(210, 100%, 28%);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background:
-    radial-gradient(
-      ellipse 120% 80% at 50% 20%,
-      $preload-accent 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      180deg,
-      $preload-deep 0%,
-      $preload-mid 35%,
-      $preload-deep 100%
-    );
-  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    radial-gradient(ellipse 90% 60% at 50% 42%, rgba($preload-glow, 0.45) 0%, transparent 58%),
+    linear-gradient(165deg, $preload-deep 0%, $preload-mid 42%, $preload-deep 100%);
+  transition: opacity 0.55s ease, visibility 0.55s ease;
 }
 
 .preload--hidden {
@@ -33,49 +26,239 @@ $preload-accent: hsl(210, 100%, 28%);
   pointer-events: none;
 }
 
-.preload--hidden .preload__logo,
-.preload--hidden .preload__tagline {
+.preload--hidden .preload__inner {
   opacity: 0;
+  transform: translateX(28px);
+}
+
+.preload__ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.preload__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.55;
+  animation: preload-drift 8s ease-in-out infinite;
+}
+
+.preload__orb--a {
+  width: min(42vw, 420px);
+  height: min(42vw, 420px);
+  left: 8%;
+  top: 12%;
+  background: radial-gradient(circle, rgba($preload-accent, 0.45) 0%, transparent 70%);
+}
+
+.preload__orb--b {
+  width: min(50vw, 480px);
+  height: min(50vw, 480px);
+  right: 4%;
+  bottom: 6%;
+  background: radial-gradient(circle, rgba($preload-glow, 0.55) 0%, transparent 70%);
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.preload__sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 38%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.07) 45%,
+    rgba($preload-accent, 0.18) 50%,
+    rgba(255, 255, 255, 0.07) 55%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  animation: preload-sweep 1.35s $ease-out 0.12s forwards;
 }
 
 .preload__inner {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, 88vw);
   text-align: center;
   color: $color-white;
+  transition: opacity 0.4s ease, transform 0.45s ease;
+}
+
+.preload__badge {
+  margin: 0 0 $space-lg;
+  font-family: $font-display;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0;
+  animation: preload-from-left 0.7s $ease-out 0.08s forwards;
+}
+
+.preload__logo-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto $space-lg;
+  opacity: 0;
+  animation: preload-from-left 0.8s $ease-out 0.18s forwards;
 }
 
 .preload__logo {
   display: block;
-  max-width: min(320px, 85vw);
+  max-width: min(300px, 78vw);
   height: auto;
-  filter: brightness(0) invert(1) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
-  margin: 0 auto $space-lg;
-  opacity: 0;
-  animation: preload-fade-in 0.6s ease-out 0.15s forwards;
-  transition: opacity 0.35s ease-out;
+  filter: brightness(0) invert(1) drop-shadow(0 8px 28px rgba(0, 0, 0, 0.28));
 }
 
-@keyframes preload-fade-in {
+.preload__rule {
+  display: block;
+  width: min(12rem, 52vw);
+  height: 1px;
+  margin: 0 auto $space-lg;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    rgba($preload-accent, 0.2),
+    rgba($preload-accent, 0.95),
+    transparent
+  );
+  animation: preload-rule 0.65s $ease-out 0.55s forwards;
+}
+
+.preload__tagline {
+  margin: 0 auto $space-sm;
+  max-width: 26ch;
+  font-size: clamp(0.95rem, 2.1vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 0;
+  animation: preload-from-left 0.7s $ease-out 0.62s forwards;
+}
+
+.preload__services {
+  margin: 0 auto $space-xl;
+  max-width: 34ch;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: rgba($preload-accent, 0.95);
+  opacity: 0;
+  animation: preload-from-left 0.7s $ease-out 0.78s forwards;
+}
+
+.preload__bar {
+  width: min(11rem, 48vw);
+  height: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  animation: preload-fade 0.4s ease 0.4s forwards;
+}
+
+.preload__bar-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  border-radius: inherit;
+  background: linear-gradient(90deg, $preload-accent, hsl(190, 100%, 62%));
+  animation: preload-progress 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+}
+
+@keyframes preload-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(4%, -6%);
+  }
+}
+
+@keyframes preload-sweep {
+  to {
+    transform: translateX(280%);
+  }
+}
+
+@keyframes preload-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes preload-rule {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes preload-fade {
   to {
     opacity: 1;
   }
 }
 
-.preload__tagline {
-  margin: 0;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  font-weight: 500;
-  color: $color-white;
-  opacity: 0;
-  animation: preload-fade-in-92 0.6s ease-out 0.35s forwards;
-  max-width: 24ch;
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: 0.02em;
-  transition: opacity 0.35s ease-out;
+@keyframes preload-progress {
+  to {
+    transform: scaleX(1);
+  }
 }
 
-@keyframes preload-fade-in-92 {
-  to {
-    opacity: 0.92;
+@media (prefers-reduced-motion: reduce) {
+  .preload__orb,
+  .preload__sweep,
+  .preload__badge,
+  .preload__logo-wrap,
+  .preload__rule,
+  .preload__tagline,
+  .preload__services,
+  .preload__bar,
+  .preload__bar-fill {
+    animation: none;
+  }
+
+  .preload__orb {
+    opacity: 0.35;
+  }
+
+  .preload__sweep {
+    display: none;
+  }
+
+  .preload__badge,
+  .preload__logo-wrap,
+  .preload__tagline,
+  .preload__services,
+  .preload__bar {
+    opacity: 1;
+    transform: none;
+  }
+
+  .preload__rule {
+    transform: scaleX(1);
+  }
+
+  .preload__bar-fill {
+    transform: scaleX(1);
   }
 }

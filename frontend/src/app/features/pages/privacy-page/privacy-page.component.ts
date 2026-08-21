@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SITE } from '@app/core/constants/site.constants';
 
 @Component({
   selector: 'app-privacy-page',
@@ -8,4 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './privacy-page.component.html',
   styleUrl: './privacy-page.component.scss',
 })
-export class PrivacyPageComponent {}
+export class PrivacyPageComponent {
+  readonly site = SITE;
+}

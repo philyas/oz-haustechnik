@@ -32,14 +32,14 @@
 }
 
 .header__logo-img {
-  height: 36px;
+  height: 52px;
   width: auto;
-  max-width: 140px;
+  max-width: 160px;
   object-fit: contain;
   object-position: left center;
   @media (min-width: $bp-md) {
-    height: 44px;
-    max-width: 170px;
+    height: 64px;
+    max-width: 200px;
   }
 }
 
@@ -82,7 +82,7 @@
 
 .header__nav {
   position: fixed;
-  top: 76px;
+  top: 88px;
   left: 0;
   right: 0;
   background: $color-bg;

@@ -10,17 +10,36 @@
 }
 
 .page__title {
-  margin: 0 0 $space-lg;
+  margin: 0 0 $space-md;
   font-family: $font-display;
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 700;
   color: $color-text;
 }
 
-.page__note {
-  margin-top: $space-xl;
-  font-size: 0.9375rem;
+.page__lead {
+  margin: 0 0 $space-xl;
+  font-size: 1.125rem;
+  line-height: 1.6;
   color: $color-text-muted;
+}
+
+.page__section {
+  margin: 0 0 $space-xl;
+  max-width: 42rem;
+}
+
+.page__heading {
+  margin: 0 0 $space-sm;
+  font-family: $font-display;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.page__section p {
+  margin: 0 0 $space-sm;
+  line-height: 1.6;
 }
 
 .page__inner a {

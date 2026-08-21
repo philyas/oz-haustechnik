@@ -1,6 +1,24 @@
 <div class="preload" [class.preload--hidden]="hidden" role="presentation">
+  <div class="preload__ambient" aria-hidden="true">
+    <span class="preload__orb preload__orb--a"></span>
+    <span class="preload__orb preload__orb--b"></span>
+    <span class="preload__sweep"></span>
+  </div>
+
   <div class="preload__inner">
-    <img [src]="logoPath" alt="" class="preload__logo" width="280" height="80" />
+    <p class="preload__badge">Meisterbetrieb</p>
+
+    <div class="preload__logo-wrap">
+      <img [src]="logoPath" alt="" class="preload__logo" width="320" height="213" />
+    </div>
+
+    <span class="preload__rule"></span>
+
     <p class="preload__tagline">{{ tagline }}</p>
+    <p class="preload__services">{{ servicesTagline }}</p>
+
+    <div class="preload__bar" aria-hidden="true">
+      <span class="preload__bar-fill"></span>
+    </div>
   </div>
 </div>
